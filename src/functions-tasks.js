@@ -32,8 +32,10 @@ function getCurrentFunctionName() {
  *   getFunctionBody(hiHello) => "function hiHello() { console.log('hello world'); }"
  *
  */
-function getFunctionBody(/* func */) {
-  throw new Error('Not implemented');
+function getFunctionBody(func) {
+  let result = '';
+  if (func) result = func;
+  return result.toString();
 }
 
 /**
@@ -113,8 +115,18 @@ function getPolynom(...args) {
  *   ...
  *   memoizer() => the same random number  (next run, returns the previous cached result)
  */
-function memoize(/* func */) {
-  throw new Error('Not implemented');
+
+function memoize(func) {
+  const cache = new Map();
+  return function mem(...args) {
+    const num = args.toString();
+    if (cache.has(num)) {
+      return cache.get(num);
+    }
+    const result = func(...args);
+    cache.set(num, result);
+    return result;
+  };
 }
 
 /**
