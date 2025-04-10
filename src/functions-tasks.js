@@ -19,6 +19,7 @@
  */
 function getCurrentFunctionName() {
   return getCurrentFunctionName.name;
+  return getCurrentFunctionName.name;
 }
 
 /**
@@ -53,6 +54,8 @@ function getFunctionBody(...args) {
  */
 function getArgumentsCount(funcs) {
   return Array.from(Array(funcs.length).keys());
+function getArgumentsCount(funcs) {
+  return Array.from(Array(funcs.length).keys());
 }
 
 /**
@@ -71,6 +74,10 @@ function getArgumentsCount(funcs) {
  *   power05(16) => 4
  *
  */
+function getPowerFunction(exponent) {
+  return function unnamed(y) {
+    return y ** exponent;
+  };
 function getPowerFunction(exponent) {
   return function unnamed(y) {
     return y ** exponent;
