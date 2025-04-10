@@ -32,8 +32,9 @@ function getCurrentFunctionName() {
  *   getFunctionBody(hiHello) => "function hiHello() { console.log('hello world'); }"
  *
  */
-function getFunctionBody() {
-  throw new Error('Not implemented');
+function getFunctionBody(...args) {
+  if (args.length === 0) return '';
+  return args.toString();
 }
 
 /**
@@ -113,8 +114,14 @@ function getPolynom(...args) {
  *   ...
  *   memoizer() => the same random number  (next run, returns the previous cached result)
  */
-function memoize(/* func */) {
-  throw new Error('Not implemented');
+function memoize(func) {
+  let cachedResult;
+  return function result() {
+    if (cachedResult === undefined) {
+      cachedResult = func();
+    }
+    return cachedResult;
+  };
 }
 
 /**
@@ -132,8 +139,19 @@ function memoize(/* func */) {
  * }, 2);
  * retryer() => 2
  */
-function retry(/* func, attempts */) {
-  throw new Error('Not implemented');
+
+function retry(func, attempts) {
+  return function result() {
+    let lastCall;
+    for (let i = 0; i < attempts; i += 1) {
+      try {
+        return func();
+      } catch (error) {
+        lastCall = error;
+      }
+    }
+    throw lastCall;
+  };
 }
 
 /**
